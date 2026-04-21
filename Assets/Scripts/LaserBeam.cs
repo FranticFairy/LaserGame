@@ -1,77 +1,71 @@
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
-
 
 public class LaserBeam
 {
-    Vector3 pos, dir;
+    private GameObject laserObj;
+    private LineRenderer laser;
+    private List<Vector3> laserIndices = new List<Vector3>();
+    private const int MaxBounces = 10;
 
-    GameObject laserObj;
-    LineRenderer laser;
-    List<Vector3> laserIndices = new List<Vector3>();
-
-
-    public LaserBeam(Vector3 pos, Vector3 dir, Material material)
+    public LaserBeam(Material material)
     {
-        this.laser = new LineRenderer();
-        this.laserObj = new GameObject();
-        this.laserObj.name = "Laser Beam";
-        this.pos = pos;
-        this.dir = dir;
-
-        this.laser = this.laserObj.AddComponent(typeof(LineRenderer)) as LineRenderer;
-        this.laser.startWidth = 0.1f;
-        this.laser.endWidth = 0.1f;
-        this.laser.material = material;
-        this.laser.startColor = Color.green;
-        this.laser.endColor = Color.green;
-
-        CastRay(pos, dir, laser);
+        laserObj = new GameObject("Laser Beam");
+        laser = laserObj.AddComponent<LineRenderer>();
+        laser.startWidth = 0.1f;
+        laser.endWidth = 0.1f;
+        laser.material = material;
+        laser.startColor = Color.green;
+        laser.endColor = Color.green;
+        laser.sortingOrder = 1; // Render on top of sprites
     }
-    
-    void CastRay(Vector3 pos, Vector3 dir, LineRenderer laser)
+
+    public void UpdateBeam(Vector3 pos, Vector3 dir)
     {
+        laserIndices.Clear();
+        CastRay(pos, dir, 0);
+        ApplyLaser();
+    }
+
+    private void CastRay(Vector3 pos, Vector2 dir, int bounceCount)
+    {
+        if (bounceCount > MaxBounces) return;
+
         laserIndices.Add(pos);
 
-        Ray ray = new Ray(pos, dir);
-        RaycastHit hit;
+        // Use Physics2D instead of Physics
+        RaycastHit2D hit = Physics2D.Raycast(pos, dir, 30f);
 
-        if(Physics.Raycast(ray, out hit, 30, 1))
+        if (hit.collider != null)
         {
-            CheckHit(hit, dir, laser);
-
-        } else
+            CheckHit(hit, dir, bounceCount);
+        }
+        else
         {
-            laserIndices.Add(ray.GetPoint(30));
-            UpdateLaser();
+            laserIndices.Add((Vector2)pos + dir * 30f);
         }
     }
 
-    void UpdateLaser()
+    private void CheckHit(RaycastHit2D hitInfo, Vector2 direction, int bounceCount)
     {
-        int count = 0;
+        if (hitInfo.collider.CompareTag("Mirror"))
+        {
+            Vector2 reflectDir = Vector2.Reflect(direction, hitInfo.normal);
+            Vector2 newPos = hitInfo.point + reflectDir * 0.001f;
+            CastRay(newPos, reflectDir, bounceCount + 1);
+        }
+        else
+        {
+            laserIndices.Add((Vector3)hitInfo.point);
+        }
+    }
+
+    private void ApplyLaser()
+    {
         laser.positionCount = laserIndices.Count;
-
-        foreach(Vector3 idx in laserIndices)
+        for (int i = 0; i < laserIndices.Count; i++)
         {
-            laser.SetPosition(count, idx);
-            count++;
-        }
-    }
-
-    void CheckHit(RaycastHit hitInfo, Vector3 direction, LineRenderer laser)
-    {
-        if(hitInfo.collider.gameObject.tag == "Mirror")
-        {
-            Vector3 pos = hitInfo.point;
-            Vector3 dir = Vector3.Reflect(direction, hitInfo.normal);
-
-            CastRay(pos, dir, laser);
-        } else
-        {
-            laserIndices.Add(hitInfo.point);
-            UpdateLaser();
+            laser.SetPosition(i, laserIndices[i]);
         }
     }
 }
