@@ -618,11 +618,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4018414910431910710, guid: 5acb5a64ee4d54a42ad541cbcbacdbbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.13
+      value: -9.11
       objectReference: {fileID: 0}
     - target: {fileID: 4018414910431910710, guid: 5acb5a64ee4d54a42ad541cbcbacdbbe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.01
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4018414910431910710, guid: 5acb5a64ee4d54a42ad541cbcbacdbbe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1568,8 +1568,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9496855, g: 0.91363937, b: 0.18217221, a: 1}
+  m_Sprite: {fileID: -5559170218202447694, guid: 072b3cb75d462e34e9360c6eaa4721d0, type: 3}
+  m_Color: {r: 0.91823894, g: 0.8792401, b: 0.089513704, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1588,9 +1588,9 @@ Transform:
   m_GameObject: {fileID: 1945904408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.04, y: -3.15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 6.31, y: -2.98, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1642,17 +1642,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05833435, y: -0.11666918}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0, y: 0, z: 0, w: 0.04}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 10.26, y: 17.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9.666653, y: 17.716606}
   m_EdgeRadius: 0
 --- !u!1001 &3570290804660731890
 PrefabInstance:
@@ -1784,7 +1784,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: -0.19981766, y: -0.12169552}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0.04}
     pivot: {x: 0.5, y: 0.5}
@@ -1794,7 +1794,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.328497, y: 17.921606}
   m_EdgeRadius: 0
 --- !u!114 &3570290804660731893
 MonoBehaviour:
@@ -1816,6 +1816,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4497607443624537372, guid: 47709f440d40f994baae077e8d847d23, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497607443624537372, guid: 47709f440d40f994baae077e8d847d23, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497607443624537372, guid: 47709f440d40f994baae077e8d847d23, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4497607443624537372, guid: 47709f440d40f994baae077e8d847d23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -1856,6 +1868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7155909551713971831, guid: 47709f440d40f994baae077e8d847d23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6012670897208127186, guid: 25297c6951f1e2249b36beb2394db7e6, type: 3}
     - target: {fileID: 7155909551713971831, guid: 47709f440d40f994baae077e8d847d23, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1948,13 +1964,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 66.91, y: 44.38}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 67.786026, y: 45.992424}
   m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
